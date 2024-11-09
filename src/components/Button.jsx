@@ -3,14 +3,15 @@ import React from "react";
 function Button({
   children,
   type = "button",
-  bgColor = "blue",
-  textColor = "white",
+  bgColor = "bg-slate-900",
+  textColor = "text-white",
+  hoverColor = "",
   className = "",
   ...props
 }) {
   return (
     <button
-      className={`px-4 py-2 rounded-lg ${bgColor} ${textColor} ${className}`}
+      className={` mx-auto py-2 px-6  rounded-lg mt-4 font-medium  cursor-pointer transition-colors duration-500 ${bgColor} ${textColor} ${className} ${hoverColor}`}
       {...props}
     >
       {children}

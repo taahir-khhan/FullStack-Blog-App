@@ -1,7 +1,11 @@
 import React from "react";
 
-function Logo() {
-  return <div className="logo">BLOGGER</div>;
+function Logo({ className }) {
+  return (
+    <div className={`text-3xl font-medium italic tracking-wider ${className}`}>
+      BLOGGER
+    </div>
+  );
 }
 
 export default Logo;

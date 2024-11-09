@@ -6,8 +6,12 @@ import conf from "../config/conf";
 function RTE({ name, control, label, defaultValue = "" }) {
   // console.log(conf.tinyMceApiKey);
   return (
-    <div className="w-full">
-      {label && <label className="inline-block mb-1 pl-1">{label}</label>}
+    <div className="w-[100%] md:w-[70%]  mx-auto mt-[3rem]">
+      {label && (
+        <label className="inline-block mb-1 pl-1 font-medium text-xl">
+          {label}
+        </label>
+      )}
 
       <Controller
         name={name || "content"}

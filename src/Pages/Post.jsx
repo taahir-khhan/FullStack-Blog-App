@@ -33,33 +33,44 @@ export default function Post() {
   };
 
   return post ? (
-    <div className="py-8">
-      <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-          <img
-            src={appwriteService.getFilePreview(post.featuredImage)}
-            alt={post.title}
-            className="rounded-xl"
-          />
+    <Container className="w-1/2 mx-auto ">
+      <div>
+        <img
+          src={appwriteService.getFilePreview(post.featuredImage)}
+          alt={post.title}
+          className="rounded-xl"
+        />
+      </div>
 
-          {isAuthor && (
-            <div className="absolute right-6 top-6">
-              <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3">
-                  Edit
-                </Button>
-              </Link>
-              <Button bgColor="bg-red-500" onClick={deletePost}>
-                Delete
+      <div>
+        <h1 className="text-4xl font-medium mt-3">{post.title}</h1>
+        <p className="text-[1.1rem] text-gray-600 mt-2">
+          {parse(post.content)}
+        </p>
+      </div>
+
+      <div>
+        {isAuthor && (
+          <div>
+            <Link to={`/edit-post/${post.$id}`}>
+              <Button
+                bgColor="bg-green-500"
+                hoverColor="hover:bg-green-700"
+                className="mr-3"
+              >
+                Edit
               </Button>
-            </div>
-          )}
-        </div>
-        <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
-        </div>
-        <div className="browser-css">{parse(post.content)}</div>
-      </Container>
-    </div>
+            </Link>
+            <Button
+              bgColor="bg-red-500"
+              hoverColor="hover:bg-red-700"
+              onClick={deletePost}
+            >
+              Delete
+            </Button>
+          </div>
+        )}
+      </div>
+    </Container>
   ) : null;
 }

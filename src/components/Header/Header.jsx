@@ -36,40 +36,40 @@ function Header() {
   ];
 
   return (
-    <header>
-      <div className="container">
-        <nav className="navbar">
-          <div>
-            <Link to="/">
-              <Logo />
-            </Link>
-          </div>
+    <header className="bg-indigo-200 p-4 mb-8 w-full h-auto border-b-4 border-white">
+      <nav className="flex flex-col gap-y-4 md:flex-row justify-between px-5 items-center">
+        <div>
+          <Link to="/">
+            <Logo />
+          </Link>
+        </div>
 
-          <ul className="nav__list">
-            {navItems.map((item) =>
-              item.active ? (
-                <li
-                  key={item.name}
-                  className={
-                    item.name === "Login" || item.name === "Signup"
-                      ? "auth__btn"
-                      : "nav__item"
-                  }
-                >
-                  <button onClick={() => navigate(item.path)}>
-                    {item.name}
-                  </button>
-                </li>
-              ) : null
-            )}
-            {authStatus && (
-              <li className="nav__item">
-                <LogoutBtn />
+        <ul className="flex items-center space-x-4 font-medium">
+          {navItems.map((item) =>
+            item.active ? (
+              <li
+                key={item.name}
+                className={
+                  item.name === "Login" || item.name === "Signup"
+                    ? "bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-500 "
+                    : "transition-colors duration-300 hover:text-indigo-700"
+                }
+              >
+                <button onClick={() => navigate(item.path)}>{item.name}</button>
               </li>
-            )}
-          </ul>
-        </nav>
-      </div>
+            ) : null
+          )}
+          {authStatus && (
+            <li className="">
+              <LogoutBtn
+                className={
+                  "bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-500"
+                }
+              />
+            </li>
+          )}
+        </ul>
+      </nav>
     </header>
   );
 }

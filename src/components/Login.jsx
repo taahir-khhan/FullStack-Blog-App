@@ -28,63 +28,50 @@ function Login() {
     }
   };
   return (
-    <div className="flex items-center justify-center w-full">
-      <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
-      >
-        <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">
-            <Logo width="100%" />
-          </span>
-        </div>
-
-        <h2 className="text-center text-2xl font-bold leading-tight">
-          Sign in to your account
-        </h2>
-
-        <p className="mt-2 text-center text-base text-black/60">
+    <div className="w-[90%] md:max-w-fit bg-white rounded-lg py-6 mx-auto flex flex-col gap-y-4 text-center px-8">
+      <div>
+        <Logo />
+        <h2 className="mt-2 font-medium text-xl">Sign in to your account</h2>
+        <p className="mt-2 text-gray-500">
           Don&apos;t have any account?&nbsp;
-          <Link
-            to="/signup"
-            className="font-medium text-primary transition-all duration-200 hover:underline"
-          >
-            Sign Up
+          <Link to="/signup">
+            <span className="font-bold transition-all duration-300 hover:underline">
+              Sign Up
+            </span>
           </Link>
         </p>
-
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-
-        <form onSubmit={handleSubmit(login)}>
-          <div className="space-y-5">
-            <Input
-              label="Email: "
-              placeholder="Enter your email"
-              type="email"
-              {...register("email", {
-                required: true,
-                validate: {
-                  matchPatern: (value) =>
-                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                    "Email address must be a valid address",
-                },
-              })}
-            />
-
-            <Input
-              label="Password: "
-              placeholder="Enter your password"
-              type="password"
-              {...register("password", {
-                required: true,
-              })}
-            />
-
-            <Button type="submit" className="w-full">
-              Sign In
-            </Button>
-          </div>
-        </form>
       </div>
+
+      <form
+        onSubmit={handleSubmit(login)}
+        className="flex flex-col items-center justify-center gap-y-2"
+      >
+        <Input
+          label="Email: "
+          placeholder="Enter your email"
+          type="email"
+          {...register("email", {
+            required: true,
+            validate: {
+              matchPatern: (value) =>
+                /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                "Email address must be a valid address",
+            },
+          })}
+        />
+
+        <Input
+          label="Password: "
+          placeholder="Enter your password"
+          type="password"
+          {...register("password", {
+            required: true,
+          })}
+        />
+
+        <Button type="submit">Sign In</Button>
+      </form>
     </div>
   );
 }

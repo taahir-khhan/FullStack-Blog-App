@@ -93,18 +93,18 @@ function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2">
+    <form onSubmit={handleSubmit(submit)}>
+      <div className="w-[70%] mx-auto grid grid-col-1 gap-2 md:grid-cols-2">
         <Input
-          label="Title :"
+          label="Title: "
           placeholder="Title"
-          className="mb-4"
           {...register("title", { required: true })}
         />
+
         <Input
-          label="Slug :"
+          label="Slug: "
           placeholder="Slug"
-          className="mb-4"
+          className=""
           {...register("slug", { required: true })}
           onInput={(e) => {
             setValue("slug", slugTransform(e.currentTarget.value), {
@@ -112,23 +112,17 @@ function PostForm({ post }) {
             });
           }}
         />
-        <RTE
-          label="Content :"
-          name="content"
-          control={control}
-          defaultValue={getValues("content")}
-        />
-      </div>
-      <div className="w-1/3 px-2">
+
         <Input
-          label="Featured Image :"
+          label="Featured Image: "
           type="file"
-          className="mb-4"
+          className=""
           accept="image/png, image/jpg, image/jpeg, image/gif"
           {...register("image", { required: !post })}
         />
+
         {post && post.featuredImage && (
-          <div className="w-full mb-4">
+          <div className="">
             <img
               src={appwriteService.getFilePreview(post.featuredImage)}
               alt={post.title}
@@ -136,17 +130,24 @@ function PostForm({ post }) {
             />
           </div>
         )}
+
         <Select
           options={["active", "inactive"]}
-          label="Status"
-          className="mb-4"
+          label="Status: "
+          className="w-[300px] flex items-center justify-center  py-2"
           {...register("status", { required: true })}
         />
-        <Button
-          type="submit"
-          bgColor={post ? "bg-green-500" : undefined}
-          className="w-full"
-        >
+      </div>
+
+      <div className="text-center">
+        <RTE
+          label="Content: "
+          name="content"
+          control={control}
+          defaultValue={getValues("content")}
+        />
+
+        <Button type="submit" bgColor="bg-green-500" className="w-[200px]">
           {post ? "Update" : "Submit"}
         </Button>
       </div>

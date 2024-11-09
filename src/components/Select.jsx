@@ -3,8 +3,12 @@ import React, { useId } from "react";
 function Select({ options, label, className, ...props }, ref) {
   const id = useId();
   return (
-    <div className="w-full">
-      {label && <label htmlFor={id}>{label}</label>}
+    <div className="flex items-start gap-[2px] justify-center flex-col text-left">
+      {label && (
+        <label className="font-medium text-xl" htmlFor={id}>
+          {label}
+        </label>
+      )}
 
       <select
         id={id}

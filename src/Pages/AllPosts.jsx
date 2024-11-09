@@ -21,16 +21,12 @@ function AllPosts() {
   }, []);
 
   return posts.length != 0 ? (
-    <div className="w-full py-8">
-      <Container>
-        <div className="flex flex-wrap">
-          {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
-              <PostCard {...post} />
-            </div>
-          ))}
+    <div className="flex items-center justify-center flex-wrap gap-4 md:py-10">
+      {posts.map((post) => (
+        <div key={post.$id}>
+          <PostCard {...post} />
         </div>
-      </Container>
+      ))}
     </div>
   ) : (
     <div className="text-5xl text-center text-red-700 p-5">
