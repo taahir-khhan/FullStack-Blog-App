@@ -1,28 +1,17 @@
-import React from "react";
+import { div } from "framer-motion/client";
+import React, { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { RxCross1 } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { Logo, LogoutBtn } from "../index";
+import { Button, Logo, LogoutBtn } from "../index";
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
+  const [showMenu, setShowMenu] = useState(false);
 
   const navItems = [
-    {
-      name: "Home",
-      path: "/",
-      active: true,
-    },
-    {
-      name: "Login",
-      path: "/login",
-      active: !authStatus,
-    },
-    {
-      name: "Signup",
-      path: "/signup",
-      active: !authStatus,
-    },
     {
       name: "All Posts",
       path: "/all-post",
@@ -35,42 +24,132 @@ function Header() {
     },
   ];
 
+  const buttons = [
+    {
+      name: "Login",
+      path: "/login",
+      active: !authStatus,
+    },
+    {
+      name: "Signup",
+      path: "/signup",
+      active: !authStatus,
+    },
+  ];
+
   return (
-    <header className="bg-indigo-200 p-4 mb-8 w-full h-auto border-b-4 border-white">
-      <nav className="flex flex-col gap-y-4 md:flex-row justify-between px-5 items-center">
-        <div>
-          <Link to="/">
+    <>
+      <header className='hidden md:flex items-center justify-between px-10 py-6 bg-black text-white'>
+        <div className='hover:scale-105 transition-transform duration-500 cursor-pointer'>
+          <Link to='/'>
             <Logo />
           </Link>
         </div>
 
-        <ul className="flex items-center space-x-4 font-medium">
-          {navItems.map((item) =>
-            item.active ? (
-              <li
-                key={item.name}
-                className={
-                  item.name === "Login" || item.name === "Signup"
-                    ? "bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-500 "
-                    : "transition-colors duration-300 hover:text-indigo-700"
-                }
+        {authStatus && (
+          <div className='flex items-center gap-3'>
+            {navItems.map((item) => (
+              <Button
+                onClick={() => navigate(item.path)}
+                bgColor='bg-white'
+                textColor='text-black'
+                hoverColor='hover:bg-yellow-500'
+                showArrow={false}
+                className={"font-medium"}
               >
-                <button onClick={() => navigate(item.path)}>{item.name}</button>
-              </li>
-            ) : null
-          )}
-          {authStatus && (
-            <li className="">
-              <LogoutBtn
-                className={
-                  "bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-500"
-                }
-              />
-            </li>
-          )}
-        </ul>
-      </nav>
-    </header>
+                {item.name}
+              </Button>
+            ))}
+            <LogoutBtn />
+          </div>
+        )}
+
+        {!authStatus && (
+          <div className='flex items-center gap-2'>
+            {buttons.map((item) =>
+              item.active ? (
+                <Button
+                  onClick={() => navigate(item.path)}
+                  bgColor='bg-yellow-500'
+                  textColor='text-black'
+                  hoverColor='hover:bg-white'
+                >
+                  {item.name}
+                </Button>
+              ) : null
+            )}
+          </div>
+        )}
+      </header>
+
+      {/* Mobile UI */}
+      <header className='flex justify-between items-center px-6 py-3 bg-black text-white relative md:hidden '>
+        <div className='hover:scale-105 transition-transform duration-500 cursor-pointer'>
+          <Link to='/'>
+            <Logo />
+          </Link>
+        </div>
+
+        {showMenu ? (
+          <RxCross1
+            className='cursor-pointer'
+            size={28}
+            onClick={() => setShowMenu(false)}
+          />
+        ) : (
+          <GiHamburgerMenu
+            className='cursor-pointer'
+            size={28}
+            onClick={() => setShowMenu(true)}
+          />
+        )}
+
+        {showMenu && (
+          <div className='absolute w-full left-0 top-[60px] bg-white transition-all duration-500 ease-in-out'>
+            {authStatus && (
+              <>
+                {navItems.map((item) => (
+                  <Button
+                    onClick={() => {
+                      navigate(item.path);
+                      setShowMenu(false);
+                    }}
+                    bgColor='bg-white'
+                    textColor='text-black'
+                    hoverColor='hover:bg-yellow-500'
+                    showArrow={false}
+                    className={"font-medium w-full border-b rounded-none"}
+                  >
+                    {item.name}
+                  </Button>
+                ))}
+                <LogoutBtn />
+              </>
+            )}
+            {!authStatus && (
+              <>
+                {buttons.map((item) =>
+                  item.active ? (
+                    <Button
+                      onClick={() => {
+                        navigate(item.path);
+                        setShowMenu(false);
+                      }}
+                      bgColor='bg-white'
+                      textColor='text-black'
+                      hoverColor='hover:bg-yellow-500'
+                      className={"w-full font-medium rounded-none border-b-2"}
+                    >
+                      {item.name}
+                    </Button>
+                  ) : null
+                )}
+              </>
+            )}
+          </div>
+        )}
+      </header>
+    </>
   );
 }
 
