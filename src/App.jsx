@@ -1,7 +1,8 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
-
 import authService from "./appwrite/auth";
 import { Footer, Header } from "./components/index";
 import { logIn, logOut } from "./store/authSlice";
@@ -21,19 +22,33 @@ function App() {
         }
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [dispatch]);
 
-  return !loading ? (
-    <div className="min-h-screen flex flex-wrap content-between bg-indigo-200">
-      <div className="w-full block">
-        <Header />
-        <main>
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
+  return (
+    <div className='min-h-screen flex flex-col bg-black'>
+      <Toaster position='top-right' />
+
+      {/* Header */}
+      <Header />
+
+      {/* Main Content with Animation */}
+      <main className='flex-grow'>
+        <AnimatePresence mode='wait'>
+          {loading ? (
+            // Loading Spinner
+            <div className='flex justify-center items-center h-full'>
+              <div className='w-12 h-12 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin'></div>
+            </div>
+          ) : (
+            <Outlet />
+          )}
+        </AnimatePresence>
+      </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
-  ) : null;
+  );
 }
 
 export default App;

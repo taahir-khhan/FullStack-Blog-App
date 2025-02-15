@@ -1,4 +1,3 @@
-import { div } from "framer-motion/client";
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
@@ -39,7 +38,7 @@ function Header() {
 
   return (
     <>
-      <header className='hidden md:flex items-center justify-between px-10 py-6 bg-black text-white'>
+      <header className='hidden md:flex items-center justify-between px-10 py-6 bg-black text-white border-b-2 border-yellow-400'>
         <div className='hover:scale-105 transition-transform duration-500 cursor-pointer'>
           <Link to='/'>
             <Logo />
@@ -83,7 +82,7 @@ function Header() {
       </header>
 
       {/* Mobile UI */}
-      <header className='flex justify-between items-center px-6 py-3 bg-black text-white relative md:hidden '>
+      <header className='flex justify-between items-center px-6 py-3 bg-black text-white relative md:hidden z-10 '>
         <div className='hover:scale-105 transition-transform duration-500 cursor-pointer'>
           <Link to='/'>
             <Logo />

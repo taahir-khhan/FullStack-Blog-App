@@ -12,7 +12,7 @@ function Button({
 }) {
   return (
     <button
-      className={` flex items-center gap-3  text-[18px] rounded-full px-6 py-3   transition-colors duration-500 cursor-pointer group ${bgColor} ${textColor} ${hoverColor} ${className}`}
+      className={` flex items-center gap-3  text-[18px] rounded-full px-6 py-3   transition-colors duration-500 cursor-pointer group font-semibold ${bgColor} ${textColor} ${hoverColor} ${className}`}
       {...props}
     >
       {children}
