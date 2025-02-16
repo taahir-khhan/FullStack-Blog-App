@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import parse from "html-react-parser";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -33,44 +34,68 @@ export default function Post() {
   };
 
   return post ? (
-    <Container className="w-1/2 mx-auto ">
-      <div>
+    <Container className='w-full max-w-4xl mx-auto py-8'>
+      {/* Featured Image with Animation */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className='w-full overflow-hidden rounded-xl shadow-lg'
+      >
         <img
           src={appwriteService.getFilePreview(post.featuredImage)}
           alt={post.title}
-          className="rounded-xl"
+          className='w-full h-auto object-cover rounded-xl transform hover:scale-105 transition-transform duration-300'
         />
-      </div>
+      </motion.div>
 
-      <div>
-        <h1 className="text-4xl font-medium mt-3">{post.title}</h1>
-        <p className="text-[1.1rem] text-gray-600 mt-2">
-          {parse(post.content)}
-        </p>
-      </div>
+      {/* Post Title with Animation */}
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className='text-4xl md:text-5xl font-bold mt-6 text-white'
+      >
+        {post.title}
+      </motion.h1>
 
-      <div>
-        {isAuthor && (
-          <div>
-            <Link to={`/edit-post/${post.$id}`}>
-              <Button
-                bgColor="bg-green-500"
-                hoverColor="hover:bg-green-700"
-                className="mr-3"
-              >
-                Edit
-              </Button>
-            </Link>
+      {/* Post Content with Animation */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className='mt-4 text-lg text-gray-300 leading-relaxed'
+      >
+        {parse(post.content)}
+      </motion.div>
+
+      {/* Buttons for Author (Edit and Delete) */}
+      {isAuthor && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className='mt-8 flex gap-4'
+        >
+          <Link to={`/edit-post/${post.$id}`}>
             <Button
-              bgColor="bg-red-500"
-              hoverColor="hover:bg-red-700"
-              onClick={deletePost}
+              bgColor='bg-green-700'
+              hoverColor='hover:bg-white'
+              className='px-6 py-2 rounded-lg'
             >
-              Delete
+              Edit
             </Button>
-          </div>
-        )}
-      </div>
+          </Link>
+          <Button
+            bgColor='bg-red-600'
+            hoverColor='hover:bg-white'
+            onClick={deletePost}
+            className='px-6 py-2 rounded-lg'
+          >
+            Delete
+          </Button>
+        </motion.div>
+      )}
     </Container>
   ) : null;
 }

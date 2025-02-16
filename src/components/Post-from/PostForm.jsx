@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import appwriteService from "../../appwrite/config";
@@ -18,6 +19,7 @@ function PostForm({ post }) {
 
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+  const [isPosted, setIsPosted] = useState(false);
 
   const submit = async (data) => {
     try {
@@ -58,12 +60,13 @@ function PostForm({ post }) {
           featuredImage: fileId,
         });
 
-        if (newPost) {
-          navigate(`/post/${newPost.$id}`);
-        }
+        toast.success("blog posted successfully");
+        setIsPosted(true);
       }
     } catch (error) {
       console.error("Error in submit:", error);
+      toast.error(error.message || "Something went wrong");
+      setIsPosted(false);
     }
   };
 
@@ -92,63 +95,74 @@ function PostForm({ post }) {
     };
   }, [watch, slugTransform, setValue]);
 
+  // useEffect(() => {
+  //   if (isPosted) {
+  //     navigate(`/post/${newPost.$id}`);
+  //   }
+  // }, [isPosted, setIsPosted]);
+
   return (
-    <form onSubmit={handleSubmit(submit)}>
-      <div className="w-[70%] mx-auto grid grid-col-1 gap-2 md:grid-cols-2">
+    <form onSubmit={handleSubmit(submit)} className='space-y-6'>
+      <div className='w-full text-white max-w-3xl mx-auto grid gap-6 md:grid-cols-2'>
         <Input
-          label="Title: "
-          placeholder="Title"
+          label='Title'
+          placeholder='Enter title'
           {...register("title", { required: true })}
         />
 
         <Input
-          label="Slug: "
-          placeholder="Slug"
-          className=""
+          label='Slug'
+          placeholder='Enter slug'
           {...register("slug", { required: true })}
-          onInput={(e) => {
-            setValue("slug", slugTransform(e.currentTarget.value), {
+          onInput={(e) =>
+            setValue("slug", slugTransform(e.target.value), {
               shouldValidate: true,
-            });
-          }}
+            })
+          }
         />
 
         <Input
-          label="Featured Image: "
-          type="file"
-          className=""
-          accept="image/png, image/jpg, image/jpeg, image/gif"
+          label='Featured Image'
+          type='file'
+          accept='image/png, image/jpg, image/jpeg, image/gif'
           {...register("image", { required: !post })}
         />
+      </div>
 
-        {post && post.featuredImage && (
-          <div className="">
-            <img
-              src={appwriteService.getFilePreview(post.featuredImage)}
-              alt={post.title}
-              className="rounded-lg"
-            />
-          </div>
-        )}
+      {post?.featuredImage && (
+        <div className='flex justify-center'>
+          <img
+            src={appwriteService.getFilePreview(post.featuredImage)}
+            alt={post.title}
+            className='rounded-lg shadow-lg w-60 h-40 object-cover'
+          />
+        </div>
+      )}
 
+      <div className='w-full max-w-3xl mx-auto'>
         <Select
           options={["active", "inactive"]}
-          label="Status: "
-          className="w-[300px] flex items-center justify-center  py-2"
+          label='Status'
           {...register("status", { required: true })}
         />
       </div>
 
-      <div className="text-center">
+      <div className='text-center w-full max-w-3xl mx-auto'>
         <RTE
-          label="Content: "
-          name="content"
+          label='Content'
+          name='content'
           control={control}
           defaultValue={getValues("content")}
         />
+      </div>
 
-        <Button type="submit" bgColor="bg-green-500" className="w-[200px]">
-          {post ? "Update" : "Submit"}
+      <div className='flex justify-center'>
+        <Button
+          type='submit'
+          bgColor='bg-yellow-500 hover:bg-white'
+          className='px-6 py-3 text-black rounded-lg shadow-md'
+        >
+          {post ? "Update Post" : "Submit Post"}
         </Button>
       </div>
     </form>

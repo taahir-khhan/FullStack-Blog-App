@@ -6,13 +6,12 @@ import conf from "../config/conf";
 function RTE({ name, control, label, defaultValue = "" }) {
   // console.log(conf.tinyMceApiKey);
   return (
-    <div className="w-[100%] md:w-[70%]  mx-auto mt-[3rem]">
+    <div className='w-full'>
       {label && (
-        <label className="inline-block mb-1 pl-1 font-medium text-xl">
+        <label className='text-lg font-medium text-white block mb-2'>
           {label}
         </label>
       )}
-
       <Controller
         name={name || "content"}
         control={control}
@@ -29,7 +28,6 @@ function RTE({ name, control, label, defaultValue = "" }) {
                 "autolink",
                 "lists",
                 "link",
-                "image",
                 "charmap",
                 "preview",
                 "anchor",
@@ -40,15 +38,12 @@ function RTE({ name, control, label, defaultValue = "" }) {
                 "insertdatetime",
                 "media",
                 "table",
-                "code",
-                "help",
                 "wordcount",
-                "anchor",
               ],
               toolbar:
-                "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
+                "undo redo | blocks | bold italic | alignleft aligncenter alignright | bullist numlist | removeformat",
               content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                "body { font-family: Helvetica, Arial, sans-serif; font-size: 14px; }",
             }}
             onEditorChange={onChange}
           />

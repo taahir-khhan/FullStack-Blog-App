@@ -7,21 +7,14 @@ const Input = React.forwardRef(function Input(
   const uniqueId = useId();
 
   return (
-    <div className="text-left">
+    <div className='flex flex-col gap-2'>
       {label && (
-        <label
-          className="inline-block mb-1 pl-1 font-medium text-xl"
-          htmlFor={uniqueId}
-        >
-          {label}
-        </label>
+        <label className='text-lg font-medium text-white'>{label}</label>
       )}
-
       <input
         type={type}
-        className={`px-3 py-2 rounded-lg block bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-[300px] ${className}`}
+        className={`bg-white/10 text-white placeholder-gray-400 border border-yellow-50 rounded-lg px-4 py-2 focus:border-yellow-400" ${className}`}
         ref={ref}
-        id={uniqueId}
         {...props}
       />
     </div>

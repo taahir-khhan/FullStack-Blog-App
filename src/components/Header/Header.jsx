@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
 import { useSelector } from "react-redux";
@@ -50,9 +50,9 @@ function Header() {
             {navItems.map((item) => (
               <Button
                 onClick={() => navigate(item.path)}
-                bgColor='bg-white'
+                bgColor='bg-yellow-500'
                 textColor='text-black'
-                hoverColor='hover:bg-yellow-500'
+                hoverColor='hover:bg-white'
                 showArrow={false}
                 className={"font-medium"}
               >
