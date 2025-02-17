@@ -54,7 +54,7 @@ function PostForm({ post }) {
         }
 
         // Create a new post
-        const newPost = await appwriteService.createPost({
+        await appwriteService.createPost({
           ...data,
           userId: userData.$id,
           featuredImage: fileId,
@@ -95,11 +95,11 @@ function PostForm({ post }) {
     };
   }, [watch, slugTransform, setValue]);
 
-  // useEffect(() => {
-  //   if (isPosted) {
-  //     navigate(`/post/${newPost.$id}`);
-  //   }
-  // }, [isPosted, setIsPosted]);
+  useEffect(() => {
+    if (isPosted) {
+      navigate("/all-post");
+    }
+  }, [isPosted, setIsPosted]);
 
   return (
     <form onSubmit={handleSubmit(submit)} className='space-y-6'>

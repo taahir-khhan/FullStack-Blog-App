@@ -1,15 +1,15 @@
-import React, { useId } from "react";
+import React, { forwardRef } from "react";
 
-const Input = React.forwardRef(function Input(
+const Input = forwardRef(function Input(
   { type = "text", label, className = "", ...props },
   ref
 ) {
-  const uniqueId = useId();
-
   return (
     <div className='flex flex-col gap-2'>
       {label && (
-        <label className='text-lg font-medium text-white'>{label}</label>
+        <label className='text-lg font-medium text-white text-left'>
+          {label} :
+        </label>
       )}
       <input
         type={type}

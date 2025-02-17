@@ -27,11 +27,7 @@ function App() {
   return (
     <div className='min-h-screen flex flex-col bg-black'>
       <Toaster position='top-right' />
-
-      {/* Header */}
       <Header />
-
-      {/* Main Content with Animation */}
       <main className='flex-grow'>
         <AnimatePresence mode='wait'>
           {loading ? (
@@ -44,8 +40,6 @@ function App() {
           )}
         </AnimatePresence>
       </main>
-
-      {/* Footer */}
       <Footer />
     </div>
   );

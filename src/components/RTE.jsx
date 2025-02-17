@@ -4,7 +4,6 @@ import { Controller } from "react-hook-form";
 import conf from "../config/conf";
 
 function RTE({ name, control, label, defaultValue = "" }) {
-  // console.log(conf.tinyMceApiKey);
   return (
     <div className='w-full'>
       {label && (

@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import appwriteService from "../appwrite/config";
-import { Button, Container, PostCard } from "../components";
+import { Button, Container } from "../components";
 
 function Home() {
   const navigate = useNavigate();
