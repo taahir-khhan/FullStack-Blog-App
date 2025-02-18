@@ -1,4 +1,4 @@
-import AuthLayout from "./AuthLayout";
+import Protected from "./AuthLayout";
 import Button from "./Button";
 import Container from "./Container/Container";
 import Footer from "./Footer/Footer";
@@ -14,7 +14,6 @@ import Select from "./Select";
 import Signup from "./SignUp";
 
 export {
-  AuthLayout,
   Button,
   Container,
   Footer,
@@ -25,6 +24,7 @@ export {
   LogoutBtn,
   PostCard,
   PostForm,
+  Protected,
   RTE,
   Select,
   Signup,

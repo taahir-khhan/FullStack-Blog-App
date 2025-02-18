@@ -53,9 +53,19 @@ function AllPosts() {
 
           {/* No Posts Available */}
           {!isLoading && posts.length === 0 && !error && (
-            <div className='text-center text-gray-500 text-2xl p-5'>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                ease: "easeOut",
+                type: "spring",
+                stiffness: 100,
+              }}
+              className='text-center text-yellow-500 font-semibold text-4xl p-5'
+            >
               No posts available. Be the first to create one!
-            </div>
+            </motion.div>
           )}
 
           {!isLoading &&

@@ -12,14 +12,16 @@ export default function Post() {
   const navigate = useNavigate();
 
   const userData = useSelector((state) => state.auth.userData);
-
   const isAuthor = post && userData ? post.userId === userData.$id : false;
 
   useEffect(() => {
     if (slug) {
       appwriteService.getPost(slug).then((post) => {
-        if (post) setPost(post);
-        else navigate("/");
+        if (post) {
+          setPost(post);
+        } else {
+          navigate("/all-post");
+        }
       });
     } else navigate("/");
   }, [slug, navigate]);
@@ -34,7 +36,7 @@ export default function Post() {
   };
 
   return post ? (
-    <Container className='w-full max-w-4xl mx-auto py-8'>
+    <Container className='w-full max-w-4xl mx-auto py-8 px-4 md:px-8'>
       {/* Featured Image with Animation */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -45,7 +47,7 @@ export default function Post() {
         <img
           src={appwriteService.getFilePreview(post.featuredImage)}
           alt={post.title}
-          className='w-full h-auto object-cover rounded-xl transform hover:scale-105 transition-transform duration-300'
+          className='w-full h-auto max-h-[300px] md:max-h-[500px] object-cover rounded-xl transform hover:scale-105 transition-transform duration-300'
         />
       </motion.div>
 
@@ -54,7 +56,7 @@ export default function Post() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className='text-4xl md:text-5xl font-bold mt-6 text-white'
+        className='text-3xl sm:text-4xl md:text-5xl font-bold mt-6 text-white text-center md:text-left'
       >
         {post.title}
       </motion.h1>
@@ -64,7 +66,7 @@ export default function Post() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className='mt-4 text-lg text-gray-300 leading-relaxed'
+        className='mt-4 text-base sm:text-lg text-gray-300 leading-relaxed text-center md:text-left'
       >
         {parse(post.content)}
       </motion.div>
@@ -75,7 +77,7 @@ export default function Post() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className='mt-8 flex gap-4'
+          className='mt-8 flex flex-wrap gap-4 justify-center md:justify-start'
         >
           <Link to={`/edit-post/${post.$id}`}>
             <Button

@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function Protected({ children, authentication = true }) {
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
 
   useEffect(() => {
-    if (authStatus && authStatus !== authentication) {
-      navigate("/login");
-    } else if (!authentication && authStatus !== authentication) {
-      navigate("/");
+    if (authentication && !authStatus) {
+      // If the route requires authentication and the user is NOT logged in
+      navigate("/login", { replace: true });
+    } else if (!authentication && authStatus) {
+      // If the route does NOT require authentication but the user is logged in
+      navigate("/all-post", { replace: true });
     }
-    setLoading(false);
   }, [authStatus, navigate, authentication]);
 
-  return loading ? <h1>Loading...</h1> : <>{children}</>;
+  return <>{children}</>;
 }
 
 export default Protected;

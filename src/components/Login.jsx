@@ -37,7 +37,6 @@ function Login() {
         }
       }
     } catch (error) {
-      toast.error("Error while logging in");
       setError(error.message);
     }
   };

@@ -9,56 +9,73 @@ import {
 } from "react-router-dom";
 
 import App from "./App.jsx";
-import { AuthLayout, Login } from "./components/index.js";
+import { Login, Protected } from "./components/index.js";
 import "./index.css";
 import { AddPost, AllPosts, EditPost, Home, Post, Signup } from "./Pages";
 import store from "./store/store.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route index element={<Home />} />
+    <Route path='/' element={<App />}>
+      {/* Public Routes (Restricted for logged-in users) */}
       <Route
-        path="login"
+        index
         element={
-          <AuthLayout authentication={false}>
+          <Protected authentication={false}>
+            <Home />
+          </Protected>
+        }
+      />
+      <Route
+        path='login'
+        element={
+          <Protected authentication={false}>
             <Login />
-          </AuthLayout>
+          </Protected>
         }
       />
       <Route
-        path="signup"
+        path='signup'
         element={
-          <AuthLayout authentication={false}>
+          <Protected authentication={false}>
             <Signup />
-          </AuthLayout>
+          </Protected>
         }
       />
+
+      {/* Protected Routes (Restricted for non-logged-in users) */}
       <Route
-        path="all-post"
+        path='all-post'
         element={
-          <AuthLayout authentication>
+          <Protected authentication>
             <AllPosts />
-          </AuthLayout>
+          </Protected>
         }
       />
       <Route
-        path="add-post"
+        path='add-post'
         element={
-          <AuthLayout authentication>
+          <Protected authentication>
             <AddPost />
-          </AuthLayout>
+          </Protected>
         }
       />
       <Route
-        path="edit-post/:slug"
+        path='edit-post/:slug'
         element={
-          <AuthLayout authentication>
+          <Protected authentication>
             <EditPost />
-          </AuthLayout>
+          </Protected>
         }
       />
-      <Route path="post/:slug" element={<Post />} />
+      <Route
+        path='post/:slug'
+        element={
+          <Protected authentication>
+            <Post />
+          </Protected>
+        }
+      />
     </Route>
   )
 );
