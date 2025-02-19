@@ -1,6 +1,6 @@
 # 🖋️ **Full-Stack Appwrite Blog Application**
 
-**[Live Demo](#)** _(https://full-stack-blog-app-one.vercel.app/)_
+**[Live Demo](https://full-stack-blog-app-one.vercel.app/)**
 
 **Full-Stack Appwrite Blog Application** is a modern, feature-rich blogging platform built using **Appwrite** for backend services and **React** with **Tailwind CSS** for the frontend. This application provides a seamless experience for users to create, explore, and manage blog posts with ease. It includes user authentication, rich text editing, image uploading, and dynamic post management.
 
@@ -50,14 +50,10 @@
 | **Home Page**                                          | **Login Page**                                           | **All Posts Page**                                              |
 | ------------------------------------------------------ | -------------------------------------------------------- | --------------------------------------------------------------- |
 | ![Mobile Home Page](./src/screenshots/mobile/Home.png) | ![Mobile Login Page](./src/screenshots/mobile/Login.png) | ![Mobile All Posts Page](./src/screenshots/mobile/All-Post.png) |
-| _Responsive homepage optimized for mobile devices._    | _Mobile-friendly login page._                            | _Browse all posts on the go._                                   |
 
 | **Add Post Page**                                                | **Edit Post Page**                                              | **Single Post Page (Admin View)**                                        |
 | ---------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | ![Mobile Add Post Page](./src/screenshots/mobile/CreatePost.png) | ![Mobile Edit Post Page](./src/screenshots/mobile/EditPost.png) | ![Mobile Single Post Page](./src/screenshots/mobile/SinglePostAdmin.png) |
-| _Add a new blog post from your mobile device._                   | _Edit your existing blog posts._                                | _View and manage your blog posts in detail._                             |
-
----
 
 ## 🛠️ **Built With**
 
@@ -73,6 +69,4 @@
 ## 🎥 **Video Walkthrough**
 
 Watch the full demo on LinkedIn to see the project in action:  
-[![LinkedIn Video Demo](https://img.shields.io/badge/Watch_Full_Video-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](#) _(Add your LinkedIn video link here)_
-
----
+[![LinkedIn Video Demo](https://img.shields.io/badge/Watch_Full_Video-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/feed/update/urn:li:activity:7297860824549756928/)
