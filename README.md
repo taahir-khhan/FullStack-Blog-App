@@ -47,13 +47,13 @@
 
 ### Mobile UI
 
-| **Home Page**                                          | **Login Page**                                           | **All Posts Page**                                              |
-| ------------------------------------------------------ | -------------------------------------------------------- | --------------------------------------------------------------- |
-| ![Mobile Home Page](./src/screenshots/mobile/Home.png) | ![Mobile Login Page](./src/screenshots/mobile/Login.png) | ![Mobile All Posts Page](./src/screenshots/mobile/All-Post.png) |
+| **Home Page**                                            | **Login Page**                                             | **All Posts Page**                                                |
+| -------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------- |
+| ![Mobile Home Page](./src/screenshots/MobileUI/Home.png) | ![Mobile Login Page](./src/screenshots/MobileUI/Login.png) | ![Mobile All Posts Page](./src/screenshots/MobileUI/All-Post.png) |
 
-| **Add Post Page**                                                | **Edit Post Page**                                              | **Single Post Page (Admin View)**                                        |
-| ---------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| ![Mobile Add Post Page](./src/screenshots/mobile/CreatePost.png) | ![Mobile Edit Post Page](./src/screenshots/mobile/EditPost.png) | ![Mobile Single Post Page](./src/screenshots/mobile/SinglePostAdmin.png) |
+| **Add Post Page**                                                   | **Edit Post Page**                                                | **Single Post Page (Admin View)**                                          |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| ![Mobile Add Post Page](./src/screenshots/MobileUI//CreatePost.png) | ![Mobile Edit Post Page](./src/screenshots/MobileUI/EditPost.png) | ![Mobile Single Post Page](./src/screenshots/MobileUI/SinglePostAdmin.png) |
 
 ## 🛠️ **Built With**
 
